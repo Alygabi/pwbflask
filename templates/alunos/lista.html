@@ -4,10 +4,11 @@
 <h1 class="mb-4">Lista de Alunos</h1>
 <div class="row">
 
-
+    <ol>
     {% for item in lista_alunos %}
-        {{item[1]}}
+        <li>{{item[1]}} - {{item[2]}}</li>
     {% endfor %}
+</ol>
 
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
