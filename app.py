@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     return render_template('dashboard/index.html')
 
-@app.route('/sobre')
+@app.route('/sobre') 
 def sobre_o_sistema():
     return render_template('dashboard/sobre.html')
 
