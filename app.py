@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 import sqlite3
-import psycopg2
+
 
 
 app = Flask(__name__)
@@ -22,7 +22,7 @@ def listar_alunos():
     lista_alunos = cursor.fetchall()
     conn.close()
 
-    
+
     return render_template('alunos/lista.html', lista_alunos=lista_alunos)
 
 @app.route('/professores')
