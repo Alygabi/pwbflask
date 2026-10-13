@@ -19,11 +19,11 @@ def listar_alunos():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("SELECT id, nome, idade, cidade FROM alunos")
-    lista_alunos = cursor.fetchall()
+    lista= cursor.fetchall()
     conn.close()
 
 
-    return render_template('alunos/lista.html', lista_alunos=lista_alunos)
+    return render_template('alunos/lista.html', lista=lista)
 
 @app.route('/professores')
 def lista_professores():
