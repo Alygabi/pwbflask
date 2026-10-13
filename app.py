@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+import sqlite3
+import psycopg2
 
 
 app = Flask(__name__)
@@ -13,24 +15,26 @@ def sobre_o_sistema():
 
 @app.route('/alunos')
 def listar_alunos():
-    lista_alunos = [
-        (1, 'Ana Beatriz Silva', 20, 'São Paulo'),
-        (2, 'Carlos Eduardo Lima', 22, 'Rio de Janeiro'),
-        (3, 'Mariana Souza', 19, 'Belo Horizonte'),
-        (4, 'Lucas Pereira', 21, 'Brasília'),
-        (5, 'Fernanda Oliveira', 23, 'Curitiba'),
-        (6, 'Rafael Santos', 20, 'Porto Alegre'),
-        (7, 'Juliana Costa', 22, 'Recife'),
-        (8, 'Gabriel Almeida', 19, 'Fortaleza'),
-        (9, 'Isabela Rodrigues', 21, 'Salvador'),
-        (10, 'Thiago Martins', 23, 'Manaus')
-    ]
+    DB_PATH = "banco_escolar.db"
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, nome, idade, cidade FROM alunos")
+    lista_alunos = cursor.fetchall()
+    conn.close()
+
+    
     return render_template('alunos/lista.html', lista_alunos=lista_alunos)
 
 @app.route('/professores')
 def lista_professores():
-    msg = 'professor senha é semsenha!'
-    return render_template('professores/lista.html', texto=msg)
+    lista_professores = [
+        (1, 'Dr. João Silva', 'Matemática'),
+        (2, 'Dra. Maria Oliveira', 'Física'),
+        (3, 'Prof. Carlos Souza', 'Química'),
+        (4, 'Dra. Ana Costa', 'Biologia'),
+        (5, 'Prof. Pedro Lima', 'História')
+    ]
+    return render_template('professores/lista.html', lista_professores=lista_professores)
 
 
 
