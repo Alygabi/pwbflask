@@ -15,7 +15,7 @@ def sobre_o_sistema():
 
 @app.route('/aluno')
 def listar_alunos():
-    DB_PATH = "banco_escolar.db"
+    DB_PATH = "banco_escola.db"
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("SELECT id, nome, idade, cidade FROM aluno")
@@ -23,11 +23,11 @@ def listar_alunos():
     conn.close()
 
 
-    return render_template('alunos/lista.html', lista=lista)
+    return render_template('aluno/lista.html', lista=lista)
 
 @app.route('/professor')
 def lista_professores():
-    DB_PATH = "banco_escolar.db"
+    DB_PATH = "banco_escola.db"
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("SELECT id, nome, disciplina FROM professor")
